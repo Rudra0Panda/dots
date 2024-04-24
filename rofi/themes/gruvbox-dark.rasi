@@ -1,0 +1,50 @@
+/* Dark theme. */
+@import "~/.cache/wal/colors-rofi-dark"
+* {
+  font : "powerline 14px";
+}
+configuration {
+ 
+  combi-modes: [ window, drun, run ];
+}
+window {
+  width : 600px;
+}
+mainbox {
+  children : [inputbar , message , listview , mode-switcher];
+}
+
+inputbar {
+  children : [entry];
+  padding: 10px 20px;
+  margin:10px;
+}
+
+element {
+  border : 0;
+  border-radius : 10px;
+  text-color : @foreground;
+}
+element-text {
+   text-color : @foreground;
+border : 0;
+   padding : 10px 20px;
+}
+element-text.selected {
+  background-color : @selected-normal-background;
+  color : @background;
+}
+button {
+  padding : 10px 20px;
+    border-radius : 10px;
+  text-color : @foreground;
+}
+button.active {
+    text-color : @background;
+}
+button.selected {
+    text-color : @background;
+}
+mode-switcher {
+  margin : 10px;
+}
