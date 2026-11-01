@@ -44,6 +44,7 @@ dotfiles/
 │       └── themes/        # Monochrome window theme (Labwc & Openbox)
 ├── .bashrc               # Bash configuration
 ├── .gtkrc-2.0            # Legacy GTK 2 settings
+├── install-packages.sh   # Automated package & dependency installer
 ├── install.sh            # Automated installation & symlink script
 └── README.md
 ```
@@ -52,12 +53,22 @@ dotfiles/
 
 ## 🚀 Installation
 
-To link these configurations to your `$HOME` directory:
+### 1. Install Essential Packages & Dependencies
+To install all required packages (Labwc, Qt/KDE integration, Yay, Code, Xournal++, OpenTabletDriver, fonts, utilities):
+
+```bash
+chmod +x install-packages.sh
+./install-packages.sh
+```
+
+### 2. Link Dotfiles & Themes
+To link configurations to your `$HOME` directory:
 
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
+*(Or run `./install.sh --packages` to run both in sequence)*
 
 The install script automatically:
 1. Backs up any existing configuration files to a timestamped backup directory (`~/.dotfiles_backup_<timestamp>`).

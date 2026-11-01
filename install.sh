@@ -7,6 +7,13 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$HOME/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
 
+# Optional package installation
+if [[ "${1:-}" == "--packages" ]] || [[ "${1:-}" == "-p" ]]; then
+    echo "==> Running package installer..."
+    "$DOTFILES_DIR/install-packages.sh"
+    echo ""
+fi
+
 echo "==> Installing dotfiles from: $DOTFILES_DIR"
 
 # Ensure target directories exist
@@ -98,4 +105,4 @@ if command -v kvantummanager >/dev/null 2>&1; then
     kvantummanager --set MonochromeSolid 2>/dev/null || true
 fi
 
-echo "==> Dotfiles setup complete!"
+echo "==> Dotfiles setup complete! (Run './install-packages.sh' to install missing dependencies)"
