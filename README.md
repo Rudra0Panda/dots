@@ -32,11 +32,13 @@ dotfiles/
 │   ├── kdeglobals        # KDE / KF6 global color scheme (Monochrome)
 │   ├── Kvantum/          # Kvantum MonochromeSolid theme files
 │   ├── labwc/            # Labwc compositor config, keybinds, square button theme & scripts
+│   ├── OpenTabletDriver/ # Graphics tablet settings & profiles (Huion H950P)
 │   ├── qt5ct/            # Qt 5 configuration & color scheme
 │   ├── qt6ct/            # Qt 6 configuration & color scheme
 │   ├── swaync/           # Notification center layout & CSS
 │   ├── waypaper/         # Wallpaper selector configuration
 │   ├── wofi/             # Application launcher theme & config
+│   ├── xournalpp/        # Xournal++ note-taking & PDF annotation configuration
 │   └── xsettingsd/       # XSettings daemon config
 ├── .local/
 │   └── share/

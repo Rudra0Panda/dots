@@ -53,6 +53,8 @@ CONFIG_DIRS=(
     "wofi"
     "waypaper"
     "xsettingsd"
+    "OpenTabletDriver"
+    "xournalpp"
 )
 
 for dir in "${CONFIG_DIRS[@]}"; do
