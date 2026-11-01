@@ -58,6 +58,9 @@ done
 if [ -f "$DOTFILES_DIR/.config/kdeglobals" ]; then
     backup_and_link "$DOTFILES_DIR/.config/kdeglobals" "$HOME/.config/kdeglobals"
 fi
+if [ -f "$DOTFILES_DIR/.config/dolphinrc" ]; then
+    backup_and_link "$DOTFILES_DIR/.config/dolphinrc" "$HOME/.config/dolphinrc"
+fi
 
 # Link root dotfiles
 if [ -f "$DOTFILES_DIR/.gtkrc-2.0" ]; then

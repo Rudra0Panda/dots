@@ -61,7 +61,7 @@ opaque=QMPlay2,kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,avidemux,avidemux
 reduce_window_opacity=18
 scrollable_menu=false
 submenu_delay=250
-no_inactiveness=false
+no_inactiveness=true
 no_window_pattern=false
 reduce_menu_opacity=0
 respect_DE=true
@@ -80,7 +80,10 @@ inactive.highlight.color=#5a5a5c
 text.color=#ffffff
 window.text.color=#ffffff
 button.text.color=#ffffff
-disabled.text.color=#777777
+inactive.text.color=#e8e8e8
+inactive.window.text.color=#e8e8e8
+inactive.button.text.color=#e8e8e8
+disabled.text.color=#8a8a8a
 tooltip.text.color=#ffffff
 highlight.text.color=#ffffff
 link.color=#8ab4f8
@@ -105,8 +108,8 @@ single_top_toolbar=true
 tint_on_mouseover=0
 transparent_pcmanfm_view=false
 middle_click_scroll=false
-no_selection_tint=false
-opaque_colors=false
+no_selection_tint=true
+opaque_colors=true
 
 [PanelButtonCommand]
 frame=true
@@ -480,7 +483,8 @@ frame.expansion=0
 inherits=GenericFrame
 frame=false
 interior=false
-interior=false
+text.normal.color=#ffffff
+text.focus.color=#ffffff
 
 [Window]
 interior=true

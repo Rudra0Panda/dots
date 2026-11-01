@@ -1,0 +1,134 @@
+/* ==============================================================================
+ * Monochrome Qt High-Contrast Legibility Fixes
+ * Ensures all text elements across Dolphin and Qt applications are high contrast
+ * and readable against dark backgrounds.
+ * ============================================================================== */
+
+/* Universal text contrast fallback */
+QLabel,
+QStatusBar,
+QStatusBar QLabel,
+QToolBar,
+QToolBar QLabel,
+QToolBar QToolButton,
+QAbstractItemView,
+QHeaderView,
+QHeaderView::section,
+QMenu,
+QMenu::item,
+QMenuBar,
+QMenuBar::item,
+QTabBar::tab,
+QLineEdit,
+QComboBox,
+QGroupBox {
+    color: #ffffff;
+}
+
+/* Status Bar & Floating Information Pills */
+QStatusBar {
+    background-color: #181818;
+    color: #ffffff;
+}
+
+QStatusBar QLabel {
+    background: transparent;
+    color: #ffffff;
+}
+
+/* KSqueezedTextLabel (Dolphin status bar file count / selection summary) */
+KSqueezedTextLabel {
+    background: transparent;
+    color: #ffffff;
+}
+
+/* Dolphin Status Bar Container */
+DolphinStatusBar {
+    background-color: #181818;
+    color: #ffffff;
+}
+
+/* Dolphin Space Information Bar */
+StatusBarSpaceInfo {
+    color: #ffffff;
+}
+
+/* Breadcrumb Navigation (KUrlNavigator & Path Buttons) */
+KUrlNavigator,
+KUrlNavigator QLabel {
+    color: #ffffff;
+    background: transparent;
+}
+
+KUrlNavigatorButton,
+KDEPrivate--KUrlNavigatorButton {
+    color: #ffffff;
+    background: transparent;
+    padding: 3px 6px;
+    border: none;
+    border-radius: 3px;
+}
+
+KUrlNavigatorButton:hover,
+KDEPrivate--KUrlNavigatorButton:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+KUrlNavigatorButton:pressed,
+KDEPrivate--KUrlNavigatorButton:pressed {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
+/* Sidebar & Item Views */
+QAbstractItemView {
+    background-color: #1e1e20;
+    color: #ffffff;
+    selection-background-color: #4a4a4c;
+    selection-color: #ffffff;
+}
+
+QAbstractItemView:disabled {
+    color: #888888;
+}
+
+/* Context Menus & Popups */
+QMenu {
+    background-color: #1e1e20;
+    color: #ffffff;
+    border: 1px solid #38383a;
+}
+
+QMenu::item:selected {
+    background-color: #38383a;
+    color: #ffffff;
+}
+
+QMenu::item:disabled {
+    color: #777777;
+}
+
+/* Tabs */
+QTabBar::tab {
+    background-color: #1e1e20;
+    color: #cccccc;
+    padding: 6px 12px;
+}
+
+QTabBar::tab:selected {
+    background-color: #2a2a2c;
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+/* Text Inputs */
+QLineEdit {
+    background-color: #242426;
+    color: #ffffff;
+    selection-background-color: #505052;
+    selection-color: #ffffff;
+    border: 1px solid #38383a;
+    border-radius: 3px;
+    padding: 2px 4px;
+}

@@ -64,7 +64,7 @@ submenu_delay=250
 no_inactiveness=false
 no_window_pattern=false
 reduce_menu_opacity=0
-respect_DE=true
+respect_DE=false
 
 [GeneralColors]
 window.color=#1e1e20
@@ -93,7 +93,7 @@ transparent_dolphin_view=true
 transparent_pcmanfm_sidepane=true
 blur_translucent=true
 transparent_menutitle=true
-respect_darkness=true
+respect_darkness=false
 kcapacitybar_as_progressbar=true
 force_size_grip=true
 iconless_pushbutton=false
