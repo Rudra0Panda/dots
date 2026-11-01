@@ -164,6 +164,7 @@ contrast=4
 frameContrast=0.2
 framecontrast=0.2
 lookandfeelpackage=org.kde.breezedark.desktop
+widgetStyle=kvantum
 
 [KFileDialog Settings]
 Allow Expansion=false
