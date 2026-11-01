@@ -1,0 +1,110 @@
+# ========================================================
+# Labwc Dark Theme
+# Deep solid dark palette (#121212) matching Eww bar
+# ========================================================
+
+# General Window Borders
+border.width: 1
+window.titlebar.padding.width: 4
+window.titlebar.padding.height: 2
+
+# Border colors
+window.active.border.color: #383838
+window.inactive.border.color: #1a1a1a
+window.active.indicator.toggled-keybind.color: #ffffff
+
+# Titlebar backgrounds (Solid Dark #121212 / Inactive #0d0d0d)
+window.active.title.bg.color: #121212
+window.inactive.title.bg.color: #0d0d0d
+window.*.title.bg: Solid
+
+# Titlebar labels (text)
+window.active.label.text.color: #f2f2f2
+window.inactive.label.text.color: #666666
+window.label.text.justify: center
+
+# Titlebar buttons
+window.button.width: 26
+window.button.height: 26
+window.button.spacing: 4
+window.button.hover.bg.color: #ffffff18
+window.button.hover.bg.corner-radius: 4
+
+window.active.button.unpressed.image.color: #f0f0f0
+window.inactive.button.unpressed.image.color: #666666
+window.active.button.close.unpressed.image.color: #ea6962
+window.active.button.iconify.unpressed.image.color: #d8a657
+window.active.button.max.unpressed.image.color: #a9b665
+window.inactive.button.close.unpressed.image.color: #5a3838
+window.inactive.button.iconify.unpressed.image.color: #5a4c33
+window.inactive.button.max.unpressed.image.color: #3d4d38
+
+# Drop shadows
+window.active.shadow.size: 32
+window.inactive.shadow.size: 16
+window.active.shadow.color: #00000090
+window.inactive.shadow.color: #00000060
+
+# Root and client context menus
+menu.overlap.x: 0
+menu.overlap.y: 0
+menu.width.min: 160
+menu.width.max: 340
+menu.border.width: 1
+menu.border.color: #333333
+menu.items.bg.color: #141414
+menu.items.text.color: #dcdcdc
+menu.items.active.bg.color: #282828
+menu.items.active.text.color: #ffffff
+menu.items.padding.x: 10
+menu.items.padding.y: 6
+menu.separator.width: 1
+menu.separator.padding.width: 8
+menu.separator.padding.height: 4
+menu.separator.color: #262626
+menu.title.bg.color: #1a1a1a
+menu.title.text.color: #ffffff
+menu.title.text.justify: Center
+
+# On Screen Display (Window switcher dialog / Alt-Tab)
+osd.bg.color: #141414
+osd.border.color: #383838
+osd.border.width: 1
+osd.label.text.color: #ffffff
+
+# OSD window switcher (classic list style)
+osd.window-switcher.style-classic.width: 580
+osd.window-switcher.style-classic.padding: 8
+osd.window-switcher.style-classic.item.padding.x: 12
+osd.window-switcher.style-classic.item.padding.y: 6
+osd.window-switcher.style-classic.item.active.border.width: 1
+osd.window-switcher.style-classic.item.active.border.color: #ffffff
+osd.window-switcher.style-classic.item.active.bg.color: #262626
+
+# OSD window switcher (thumbnail grid style)
+osd.window-switcher.style-thumbnail.width.max: 75%
+osd.window-switcher.style-thumbnail.padding: 10
+osd.window-switcher.style-thumbnail.item.width: 260
+osd.window-switcher.style-thumbnail.item.height: 200
+osd.window-switcher.style-thumbnail.item.padding: 10
+osd.window-switcher.style-thumbnail.item.active.border.width: 1
+osd.window-switcher.style-thumbnail.item.active.border.color: #ffffff
+osd.window-switcher.style-thumbnail.item.active.bg.color: #262626
+osd.window-switcher.style-thumbnail.item.icon.size: 48
+
+# OSD window preview outline
+osd.window-switcher.preview.border.width: 1
+osd.window-switcher.preview.border.color: #ffffff
+
+# Workspace switcher
+osd.workspace-switcher.boxes.width: 24
+osd.workspace-switcher.boxes.height: 24
+osd.workspace-switcher.boxes.border.width: 1
+
+# Snapping / Tiling preview overlay
+snapping.overlay.region.bg.color: #ffffff14
+snapping.overlay.edge.bg.color: #ffffff14
+snapping.overlay.region.border.width: 1
+snapping.overlay.edge.border.width: 1
+snapping.overlay.region.border.color: #ffffff70
+snapping.overlay.edge.border.color: #ffffff70

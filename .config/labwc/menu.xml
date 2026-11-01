@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!-- ============================================== -->
+  <!-- Window Context Menu (client-menu)              -->
+  <!-- ============================================== -->
+  <menu id="client-menu">
+    <item label="Minimize" icon="window-minimize">
+      <action name="Iconify" />
+    </item>
+    <item label="Maximize" icon="window-maximize">
+      <action name="ToggleMaximize" />
+    </item>
+    <item label="Fullscreen" icon="view-fullscreen">
+      <action name="ToggleFullscreen" />
+    </item>
+    <item label="Roll Up/Down" icon="view-restore">
+      <action name="ToggleShade" />
+    </item>
+    <item label="Toggle Decorations" icon="preferences-desktop-theme">
+      <action name="ToggleDecorations" />
+    </item>
+    <item label="Always on Top" icon="window-pin">
+      <action name="ToggleAlwaysOnTop" />
+    </item>
+    <separator />
+    <menu id="client-send-to-menu" label="Send to Workspace" icon="preferences-desktop-workspaces" />
+    <separator />
+    <item label="Close" icon="window-close">
+      <action name="Close" />
+    </item>
+  </menu>
+
+  <!-- ============================================== -->
+  <!-- Applications Pipemenu (Installed Apps)         -->
+  <!-- ============================================== -->
+  <menu id="applications-pipe" label="Applications" icon="applications-other" execute="labwc-menu-generator -p -I" />
+
+  <!-- ============================================== -->
+  <!-- Quick Applications Menu                        -->
+  <!-- ============================================== -->
+  <menu id="quick-apps" label="Quick Apps" icon="applications-accessories">
+    <item label="Terminal (Alacritty)" icon="utilities-terminal">
+      <action name="Execute" command="alacritty" />
+    </item>
+    <item label="File Manager" icon="system-file-manager">
+      <action name="Execute" command="xdg-open ~" />
+    </item>
+    <item label="Web Browser" icon="web-browser">
+      <action name="Execute" command="xdg-open https://" />
+    </item>
+    <item label="Text Editor" icon="accessories-text-editor">
+      <action name="Execute" command="alacritty -e nano" />
+    </item>
+    <item label="Process Monitor (htop)" icon="utilities-system-monitor">
+      <action name="Execute" command="alacritty -e htop" />
+    </item>
+  </menu>
+
+  <!-- ============================================== -->
+  <!-- System & Hardware Submenu                      -->
+  <!-- ============================================== -->
+  <menu id="system-tools" label="System &amp; Hardware" icon="preferences-system">
+    <item label="Bluetooth Manager" icon="bluetooth">
+      <action name="Execute" command="blueman-manager" />
+    </item>
+    <item label="Network Connections" icon="network-wireless">
+      <action name="Execute" command="nm-connection-editor" />
+    </item>
+    <item label="OpenTabletDriver GUI" icon="input-tablet">
+      <action name="Execute" command="otd-gui" />
+    </item>
+    <item label="KDE Connect" icon="kdeconnect">
+      <action name="Execute" command="kdeconnect-app" />
+    </item>
+    <separator />
+    <item label="Audio Volume Control" icon="multimedia-volume-control">
+      <action name="Execute" command="pavucontrol" />
+    </item>
+  </menu>
+
+  <!-- ============================================== -->
+  <!-- Preferences & Styling Submenu                  -->
+  <!-- ============================================== -->
+  <menu id="preferences-menu" label="Preferences" icon="preferences-desktop-theme">
+    <item label="Set Wallpaper (Monochrome)" icon="preferences-desktop-wallpaper">
+      <action name="Execute" command="~/.config/labwc/scripts/wallpaper.sh" />
+    </item>
+    <item label="Restart / Reload Eww Bar" icon="view-refresh">
+      <action name="Execute" command="~/.config/eww/scripts/launch-bar.sh" />
+    </item>
+    <item label="Labwc Tweaks" icon="preferences-system">
+      <action name="Execute" command="labwc-tweaks" />
+    </item>
+    <item label="Reload Labwc Configuration" icon="view-refresh">
+      <action name="Reconfigure" />
+    </item>
+  </menu>
+
+  <!-- ============================================== -->
+  <!-- Session & Power Submenu                        -->
+  <!-- ============================================== -->
+  <menu id="session-menu" label="Session" icon="system-shutdown">
+    <item label="Lock Screen" icon="system-lock-screen">
+      <action name="Execute" command="swaylock -f -c 000000" />
+    </item>
+    <item label="Suspend" icon="system-suspend">
+      <action name="Execute" command="systemctl suspend" />
+    </item>
+    <item label="Reboot" icon="system-reboot">
+      <action name="Execute" command="systemctl reboot" />
+    </item>
+    <item label="Power Off" icon="system-shutdown">
+      <action name="Execute" command="systemctl poweroff" />
+    </item>
+    <separator />
+    <item label="Exit Labwc" icon="system-log-out">
+      <action name="Exit" />
+    </item>
+  </menu>
+
+  <!-- ============================================== -->
+  <!-- Root Context Menu (Right Click on Desktop)     -->
+  <!-- ============================================== -->
+  <menu id="root-menu">
+    <separator label="Labwc" />
+    <item label="Terminal" icon="utilities-terminal">
+      <action name="Execute" command="alacritty" />
+    </item>
+    <item label="Wofi App Launcher" icon="preferences-system-search">
+      <action name="Execute" command="wofi --show drun" />
+    </item>
+    <item label="Wofi Run Command" icon="system-run">
+      <action name="Execute" command="wofi --show run" />
+    </item>
+    <separator />
+    <menu id="applications-pipe" />
+    <menu id="quick-apps" />
+    <menu id="system-tools" />
+    <menu id="preferences-menu" />
+    <separator />
+    <menu id="client-list-combined-menu" label="Active Windows" icon="window" />
+    <separator />
+    <menu id="session-menu" />
+  </menu>
+
+</openbox_menu>
+

@@ -1,0 +1,231 @@
+/* ========================================================
+   Monochrome Eww Bar Stylesheet
+   ======================================================== */
+
+* {
+    all: unset;
+    font-family: "DejaVu Sans", "Adwaita Sans", sans-serif;
+    font-size: 12px;
+}
+
+.bar-container {
+    background-color: #121212;
+    border-bottom: 1px solid #282828;
+    color: #ffffff;
+    padding: 4px 12px;
+}
+
+/* Common Icon Style */
+.mod-icon {
+    font-family: "Symbols Nerd Font", "DejaVu Sans", sans-serif;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.cpu-icon, .gpu-icon, .ram-icon {
+    font-size: 13px;
+    color: #ffffff;
+}
+
+/* Left section */
+.section-left {
+    padding: 1px 0px;
+}
+
+.launcher-btn {
+    background-color: #1c1c1c;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    padding: 3px 12px;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.launcher-btn:hover {
+    background-color: #2a2a2a;
+    border-color: #666666;
+}
+
+.workspaces-box {
+    padding: 1px 0px;
+}
+
+.ws-btn {
+    background-color: #181818;
+    border: 1px solid #2a2a2a;
+    border-radius: 5px;
+    padding: 3px 10px;
+    color: #888888;
+    font-weight: bold;
+    font-size: 11px;
+    transition: all 0.2s ease;
+}
+
+.ws-btn:hover {
+    background-color: #242424;
+    border-color: #555555;
+    color: #ffffff;
+}
+
+.ws-btn.ws-active {
+    background-color: #2a2a2a;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* Center section */
+.section-center {
+    padding: 1px 0px;
+}
+
+.clock-btn {
+    background-color: #181818;
+    border: 1px solid #282828;
+    border-radius: 6px;
+    padding: 4px 14px;
+    transition: all 0.2s ease;
+}
+
+.clock-btn:hover {
+    background-color: #222222;
+    border-color: #444444;
+}
+
+.clock-time {
+    font-weight: bold;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+.clock-sep {
+    color: #444444;
+    font-size: 11px;
+}
+
+.clock-date {
+    color: #a0a0a0;
+    font-size: 11px;
+}
+
+/* Right section modules */
+.section-right {
+    padding: 1px 0px;
+}
+
+.module-box {
+    background-color: #181818;
+    border: 1px solid #282828;
+    border-radius: 6px;
+    padding: 3px 10px;
+    transition: all 0.2s ease;
+}
+
+.module-box:hover {
+    background-color: #222222;
+    border-color: #444444;
+}
+
+.module-sep {
+    color: #383838;
+    font-size: 10px;
+}
+
+.metric-label {
+    color: #777777;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.metric-val {
+    color: #e0e0e0;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Volume Sub-buttons */
+.vol-icon-btn {
+    border-radius: 4px;
+    padding: 1px 3px;
+    transition: all 0.15s ease;
+}
+
+.vol-icon-btn:hover {
+    background-color: #2a2a2a;
+}
+
+.vol-num-btn {
+    border-radius: 4px;
+    padding: 1px 3px;
+    transition: all 0.15s ease;
+}
+
+.vol-num-btn:hover {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+/* Brightness */
+.bright-icon {
+    font-size: 13px;
+}
+
+/* Network */
+.net-icon {
+    font-size: 13px;
+}
+
+.net-ssid {
+    padding-left: 2px;
+    color: #cccccc;
+    font-size: 11px;
+}
+
+/* Clipboard */
+.clip-box {
+    padding: 3px 9px;
+}
+
+.clip-icon {
+    font-size: 13px;
+}
+
+.clip-count {
+    color: #e0e0e0;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Notifications */
+.notif-box {
+    padding: 3px 9px;
+}
+
+.notif-icon {
+    font-size: 13px;
+}
+
+.notif-count {
+    color: #e0e0e0;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Power Button */
+.power-btn {
+    background-color: #1c1c1c;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    padding: 3px 11px;
+    color: #ffffff;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.power-btn:hover {
+    background-color: #333333;
+    border-color: #ffffff;
+}

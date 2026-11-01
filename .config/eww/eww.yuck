@@ -1,0 +1,230 @@
+;; ========================================================
+;; Monochrome Eww Bar for Labwc
+;; ========================================================
+
+;; ── Polls ──
+(defpoll time :interval "1s" "date '+%H:%M'")
+(defpoll date :interval "10s" "date '+%a, %b %d'")
+
+;; Volume
+(defpoll volume :interval "1s" "~/.config/eww/scripts/volume.sh")
+(defpoll vol_icon :interval "1s" "~/.config/eww/scripts/volume.sh icon")
+
+;; Brightness
+(defpoll brightness :interval "1s" "~/.config/eww/scripts/brightness.sh")
+(defpoll bright_icon :interval "1s" "~/.config/eww/scripts/brightness.sh icon")
+
+;; Battery
+(defpoll battery :interval "5s" "~/.config/eww/scripts/battery.sh")
+(defpoll bat_icon :interval "5s" "~/.config/eww/scripts/battery.sh icon")
+
+;; Network
+(defpoll network :interval "5s" "~/.config/eww/scripts/network.sh")
+(defpoll net_icon :interval "5s" "~/.config/eww/scripts/network.sh icon")
+
+;; Clipboard
+(defpoll clip_count :interval "2s" "~/.config/eww/scripts/clipboard.sh count")
+
+;; Notifications
+(defpoll notif_icon :interval "1s" "~/.config/eww/scripts/notifications.sh icon")
+(defpoll notif_count :interval "1s" "~/.config/eww/scripts/notifications.sh count")
+
+;; System
+(defpoll cpu :interval "2s" "grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf \"%.0f%%\", usage}'")
+(defpoll gpu :interval "2s" "~/.config/eww/scripts/gpu.sh")
+(defpoll gpu_temp :interval "5s" "~/.config/eww/scripts/gpu.sh temp")
+(defpoll ram :interval "2s" "free -m | awk '/Mem:/ {printf \"%.0f%%\", $3/$2*100}'")
+
+;; ── Variables ──
+(defvar show_net false)
+(defvar active_workspace 1)
+
+;; ── Widgets ──
+
+;; Launcher widget
+(defwidget launcher []
+  (box :class "launcher-box"
+       :orientation "h"
+       :space-evenly false
+    (button :class "launcher-btn"
+            :onclick "wofi --show drun &"
+            :onrightclick "wofi --show run &"
+            :tooltip "App Launcher (Wofi)"
+      "●  APPS")))
+
+;; Workspaces widget
+(defwidget workspaces []
+  (box :class "workspaces-box"
+       :orientation "h"
+       :space-evenly false
+       :spacing 4
+    (button :class "ws-btn ${active_workspace == 1 ? 'ws-active' : ''}" :onclick "~/.config/eww/scripts/workspace.sh 1" "1")
+    (button :class "ws-btn ${active_workspace == 2 ? 'ws-active' : ''}" :onclick "~/.config/eww/scripts/workspace.sh 2" "2")
+    (button :class "ws-btn ${active_workspace == 3 ? 'ws-active' : ''}" :onclick "~/.config/eww/scripts/workspace.sh 3" "3")
+    (button :class "ws-btn ${active_workspace == 4 ? 'ws-active' : ''}" :onclick "~/.config/eww/scripts/workspace.sh 4" "4")))
+
+;; Clock & Date widget
+(defwidget clock []
+  (box :class "clock-box"
+       :orientation "h"
+       :space-evenly false
+       :spacing 8
+    (button :class "clock-btn"
+      (box :orientation "h" :spacing 8 :space-evenly false
+        (label :class "clock-time" :text time)
+        (label :class "clock-sep" :text "│")
+        (label :class "clock-date" :text date)))))
+
+;; System Metrics (CPU, GPU & RAM with Icons)
+(defwidget sys_metrics []
+  (box :class "metrics-box module-box"
+       :orientation "h"
+       :space-evenly false
+       :spacing 10
+    (box :class "metric-item" :space-evenly false :spacing 5 :tooltip "CPU Load"
+      (label :class "mod-icon cpu-icon" :text "")
+      (label :class "metric-val" :text cpu))
+    (label :class "module-sep" :text "│")
+    (box :class "metric-item" :space-evenly false :spacing 5 :tooltip "GPU Load (${gpu_temp})"
+      (label :class "mod-icon gpu-icon" :text "󰢮")
+      (label :class "metric-val" :text gpu))
+    (label :class "module-sep" :text "│")
+    (box :class "metric-item" :space-evenly false :spacing 5 :tooltip "RAM Usage"
+      (label :class "mod-icon ram-icon" :text "󰘚")
+      (label :class "metric-val" :text ram))))
+
+;; Brightness Control Widget
+(defwidget bright []
+  (eventbox :onscroll "if [ '{}' = 'up' ]; then ~/.config/eww/scripts/brightness.sh up; else ~/.config/eww/scripts/brightness.sh down; fi"
+    (box :class "bright-box module-box"
+         :space-evenly false
+         :spacing 6
+         :tooltip "Brightness: ${brightness} (Scroll to adjust)"
+      (label :class "mod-icon bright-icon" :text bright_icon)
+      (label :class "metric-val bright-val" :text brightness))))
+
+;; Volume Widget (Icon mutes, Number opens Pavucontrol, Scroll capped at 100%)
+(defwidget vol []
+  (eventbox :onscroll "if [ '{}' = 'up' ]; then ~/.config/eww/scripts/volume.sh up; else ~/.config/eww/scripts/volume.sh down; fi"
+    (box :class "vol-box module-box"
+         :space-evenly false
+         :spacing 5
+      ;; Icon: click mutes/unmutes
+      (button :class "vol-icon-btn"
+              :onclick "~/.config/eww/scripts/volume.sh mute"
+              :tooltip "Click to Mute / Unmute"
+        (label :class "mod-icon vol-icon" :text vol_icon))
+      ;; Number / Percentage: click opens volume control (pavucontrol)
+      (button :class "vol-num-btn"
+              :onclick "pavucontrol &"
+              :tooltip "Click to open Volume Control"
+        (label :class "metric-val vol-val" :text volume)))))
+
+;; Battery Widget (with dynamic icon)
+(defwidget bat []
+  (box :class "bat-box module-box"
+       :space-evenly false
+       :spacing 6
+       :tooltip "Battery: ${battery}"
+    (label :class "mod-icon bat-icon" :text bat_icon)
+    (label :class "metric-val" :text battery)))
+
+;; Network Widget (Collapsed by default, expands on click/hover)
+(defwidget net []
+  (eventbox :onhover "eww update show_net=true"
+            :onhoverlost "eww update show_net=false"
+            :onclick "eww update show_net=${!show_net}"
+            :onrightclick "nm-connection-editor &"
+    (box :class "net-box module-box"
+         :space-evenly false
+         :spacing 6
+         :tooltip "${network} (Click to toggle SSID | Right-click for Settings)"
+      (label :class "mod-icon net-icon" :text net_icon)
+      (revealer :transition "slideright"
+                :reveal show_net
+                :duration "250ms"
+        (label :class "metric-val net-ssid" :text network :limit-width 18)))))
+
+;; Notification Center Widget
+(defwidget notif []
+  (eventbox :onclick "swaync-client -t -sw"
+            :onrightclick "swaync-client -d -sw"
+    (box :class "notif-box module-box"
+         :space-evenly false
+         :spacing 5
+         :tooltip "Notifications (Left-click: Toggle Panel | Right-click: Toggle DND)"
+      (label :class "mod-icon notif-icon" :text notif_icon)
+      (label :class "metric-val notif-count" :text notif_count))))
+
+;; Clipboard Widget
+(defwidget clip []
+  (eventbox :onclick "~/.config/eww/scripts/clipboard.sh open"
+            :onrightclick "~/.config/eww/scripts/clipboard.sh clear"
+    (box :class "clip-box module-box"
+         :space-evenly false
+         :spacing 5
+         :tooltip "Clipboard History (Left-click: Browse & Paste | Right-click: Clear History)"
+      (label :class "mod-icon clip-icon" :text "󰅍")
+      (label :class "metric-val clip-count" :text clip_count))))
+
+;; Power / Session Widget
+(defwidget power []
+  (button :class "power-btn"
+          :onclick "~/.config/labwc/scripts/wofi-powermenu.sh &"
+          :tooltip "Power / Session Menu"
+    "⏻"))
+
+;; Left layout
+(defwidget left []
+  (box :class "section-left"
+       :orientation "h"
+       :space-evenly false
+       :halign "start"
+       :spacing 10
+    (launcher)
+    (workspaces)))
+
+;; Center layout
+(defwidget center []
+  (box :class "section-center"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    (clock)))
+
+;; Right layout
+(defwidget right []
+  (box :class "section-right"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 8
+    (sys_metrics)
+    (bright)
+    (vol)
+    (bat)
+    (net)
+    (clip)
+    (notif)
+    (power)))
+
+;; Full Bar Container
+(defwidget bar_layout []
+  (centerbox :class "bar-container"
+             :orientation "h"
+    (left)
+    (center)
+    (right)))
+
+;; Window Definition
+(defwindow bar
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "36px"
+                      :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  (bar_layout))

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labwc_config>
+
+  <!-- ============================================== -->
+  <!-- Core Settings & Tiling Gaps                    -->
+  <!-- ============================================== -->
+  <core>
+    <decoration>server</decoration>
+    <gap>6</gap>
+    <adaptiveSync>no</adaptiveSync>
+  </core>
+
+  <!-- ============================================== -->
+  <!-- Workspaces / Desktops Configuration            -->
+  <!-- ============================================== -->
+  <desktops number="4">
+    <popupTime>800</popupTime>
+    <names>
+      <name>1</name>
+      <name>2</name>
+      <name>3</name>
+      <name>4</name>
+    </names>
+  </desktops>
+
+  <!-- ============================================== -->
+  <!-- Window Edge Snapping & Tiling Overlays         -->
+  <!-- ============================================== -->
+  <snapping>
+    <range>
+      <inner>20</inner>
+      <outer>20</outer>
+    </range>
+    <cornerRange>60</cornerRange>
+    <overlay>
+      <enabled>yes</enabled>
+      <delay>
+        <inner>150</inner>
+        <outer>150</outer>
+      </delay>
+    </overlay>
+    <topMaximize>yes</topMaximize>
+    <notifyClient>always</notifyClient>
+  </snapping>
+
+  <!-- ============================================== -->
+  <!-- Edge Resistance & Magnetic Attraction         -->
+  <!-- ============================================== -->
+  <resistance>
+    <screenEdgeStrength>20</screenEdgeStrength>
+    <windowEdgeStrength>20</windowEdgeStrength>
+    <unSnapThreshold>20</unSnapThreshold>
+  </resistance>
+
+  <!-- ============================================== -->
+  <!-- Snap Regions (Halves & Quarters)               -->
+  <!-- ============================================== -->
+  <regions>
+    <region name="left" x="0%" y="0%" width="50%" height="100%" />
+    <region name="right" x="50%" y="0%" width="50%" height="100%" />
+    <region name="top-left" x="0%" y="0%" width="50%" height="50%" />
+    <region name="top-right" x="50%" y="0%" width="50%" height="50%" />
+    <region name="bottom-left" x="0%" y="50%" width="50%" height="50%" />
+    <region name="bottom-right" x="50%" y="50%" width="50%" height="50%" />
+  </regions>
+
+  <!-- ============================================== -->
+  <!-- Monochrome Theme Settings                       -->
+  <!-- ============================================== -->
+  <theme>
+    <name>Monochrome</name>
+    <icon>Adwaita</icon>
+    <cornerRadius>6</cornerRadius>
+    <keepBorder>yes</keepBorder>
+    <maximizedDecoration>titlebar</maximizedDecoration>
+    <dropShadows>yes</dropShadows>
+
+    <titlebar>
+      <layout>icon:iconify,max,close</layout>
+      <showTitle>yes</showTitle>
+    </titlebar>
+
+    <font place="ActiveWindow">
+      <name>DejaVu Sans</name>
+      <size>10</size>
+      <weight>bold</weight>
+    </font>
+    <font place="InactiveWindow">
+      <name>DejaVu Sans</name>
+      <size>10</size>
+      <weight>normal</weight>
+    </font>
+    <font place="MenuItem">
+      <name>DejaVu Sans</name>
+      <size>10</size>
+      <weight>normal</weight>
+    </font>
+    <font place="MenuHeader">
+      <name>DejaVu Sans</name>
+      <size>10</size>
+      <weight>bold</weight>
+    </font>
+    <font place="OnScreenDisplay">
+      <name>DejaVu Sans</name>
+      <size>11</size>
+      <weight>normal</weight>
+    </font>
+  </theme>
+
+  <!-- ============================================== -->
+  <!-- Window Switcher (Alt + Tab OSD)                -->
+  <!-- ============================================== -->
+  <windowSwitcher preview="yes" outlines="yes">
+    <osd show="yes" style="classic" />
+  </windowSwitcher>
+
+  <!-- ============================================== -->
+  <!-- Keyboard Shortcuts                             -->
+  <!-- ============================================== -->
+  <keyboard>
+    <default />
+
+    <!-- ── Wofi Launcher Shortcuts ── -->
+    <!-- Super key tap (release) opens Wofi App Launcher -->
+    <keybind key="Super_L" onRelease="yes">
+      <action name="Execute" command="wofi --show drun" />
+    </keybind>
+
+    <!-- Super + Space: Wofi App Launcher -->
+    <keybind key="W-space">
+      <action name="Execute" command="wofi --show drun" />
+    </keybind>
+
+    <!-- Super + d: Wofi App Launcher -->
+    <keybind key="W-d">
+      <action name="Execute" command="wofi --show drun" />
+    </keybind>
+
+    <!-- Super + r or Alt + F2: Wofi Command Runner -->
+    <keybind key="W-r">
+      <action name="Execute" command="wofi --show run" />
+    </keybind>
+    <keybind key="A-F2">
+      <action name="Execute" command="wofi --show run" />
+    </keybind>
+
+    <!-- Super + x: Wofi Power & Session Menu -->
+    <keybind key="W-x">
+      <action name="Execute" command="~/.config/labwc/scripts/wofi-powermenu.sh" />
+    </keybind>
+
+    <!-- Super + v: Wofi Clipboard History Manager -->
+    <keybind key="W-v">
+      <action name="Execute" command="~/.config/labwc/scripts/clipboard.sh" />
+    </keybind>
+
+    <!-- Super + Shift + n: Toggle SwayNC Notification Center -->
+    <keybind key="W-S-n">
+      <action name="Execute" command="swaync-client -t -sw" />
+    </keybind>
+
+    <!-- ── Screenshot Shortcuts ── -->
+    <!-- Print: Fullscreen Screenshot -->
+    <keybind key="Print">
+      <action name="Execute" command="~/.config/labwc/scripts/screenshot.sh full" />
+    </keybind>
+
+    <!-- Shift + Print or Super + Shift + s: Region Screenshot -->
+    <keybind key="S-Print">
+      <action name="Execute" command="~/.config/labwc/scripts/screenshot.sh area" />
+    </keybind>
+    <keybind key="W-S-s">
+      <action name="Execute" command="~/.config/labwc/scripts/screenshot.sh area" />
+    </keybind>
+    <keybind key="A-Print">
+      <action name="Execute" command="~/.config/labwc/scripts/screenshot.sh area" />
+    </keybind>
+
+    <!-- ── Terminal & Core Controls ── -->
+    <keybind key="W-Return">
+      <action name="Execute" command="alacritty" />
+    </keybind>
+
+    <!-- Close Window -->
+    <keybind key="W-q">
+      <action name="Close" />
+    </keybind>
+    <keybind key="A-F4">
+      <action name="Close" />
+    </keybind>
+
+    <!-- Fullscreen & Maximize -->
+    <keybind key="W-f">
+      <action name="ToggleFullscreen" />
+    </keybind>
+    <keybind key="W-m">
+      <action name="ToggleMaximize" />
+    </keybind>
+    <keybind key="W-a">
+      <action name="ToggleMaximize" />
+    </keybind>
+
+    <!-- Minimize (Iconify) -->
+    <keybind key="W-n">
+      <action name="Iconify" />
+    </keybind>
+
+    <!-- ── Tiling: Directional Halves (Arrows & Vim keys) ── -->
+    <keybind key="W-Left">
+      <action name="ToggleSnapToEdge" direction="left" combine="yes" />
+    </keybind>
+    <keybind key="W-h">
+      <action name="ToggleSnapToEdge" direction="left" combine="yes" />
+    </keybind>
+
+    <keybind key="W-Right">
+      <action name="ToggleSnapToEdge" direction="right" combine="yes" />
+    </keybind>
+    <keybind key="W-l">
+      <action name="ToggleSnapToEdge" direction="right" combine="yes" />
+    </keybind>
+
+    <keybind key="W-Up">
+      <action name="ToggleSnapToEdge" direction="up" combine="yes" />
+    </keybind>
+    <keybind key="W-k">
+      <action name="ToggleSnapToEdge" direction="up" combine="yes" />
+    </keybind>
+
+    <keybind key="W-Down">
+      <action name="ToggleSnapToEdge" direction="down" combine="yes" />
+    </keybind>
+    <keybind key="W-j">
+      <action name="ToggleSnapToEdge" direction="down" combine="yes" />
+    </keybind>
+
+    <!-- ── Tiling: Corner Quarters (Super + Alt + Arrows/Vim) ── -->
+    <keybind key="W-A-Left">
+      <action name="ToggleSnapToEdge" direction="up-left" />
+    </keybind>
+    <keybind key="W-A-h">
+      <action name="ToggleSnapToEdge" direction="up-left" />
+    </keybind>
+
+    <keybind key="W-A-Right">
+      <action name="ToggleSnapToEdge" direction="up-right" />
+    </keybind>
+    <keybind key="W-A-l">
+      <action name="ToggleSnapToEdge" direction="up-right" />
+    </keybind>
+
+    <keybind key="W-A-Down">
+      <action name="ToggleSnapToEdge" direction="down-left" />
+    </keybind>
+    <keybind key="W-A-j">
+      <action name="ToggleSnapToEdge" direction="down-left" />
+    </keybind>
+
+    <keybind key="W-A-Up">
+      <action name="ToggleSnapToEdge" direction="down-right" />
+    </keybind>
+    <keybind key="W-A-k">
+      <action name="ToggleSnapToEdge" direction="down-right" />
+    </keybind>
+
+    <!-- Center Window on Screen -->
+    <keybind key="W-c">
+      <action name="ToggleSnapToEdge" direction="center" />
+    </keybind>
+
+    <!-- Un-Tile / Restore Window Floating -->
+    <keybind key="W-u">
+      <action name="UnSnap" />
+    </keybind>
+
+    <!-- ── Tiling: Expand Tiled Edges (Super + Shift + Arrows) ── -->
+    <keybind key="W-S-Left">
+      <action name="GrowToEdge" direction="left" />
+    </keybind>
+    <keybind key="W-S-Right">
+      <action name="GrowToEdge" direction="right" />
+    </keybind>
+    <keybind key="W-S-Up">
+      <action name="GrowToEdge" direction="up" />
+    </keybind>
+    <keybind key="W-S-Down">
+      <action name="GrowToEdge" direction="down" />
+    </keybind>
+
+    <!-- ── Tiling: Shrink Tiled Edges (Super + Ctrl + Arrows/Vim) ── -->
+    <keybind key="W-C-Left">
+      <action name="ShrinkToEdge" direction="left" />
+    </keybind>
+    <keybind key="W-C-h">
+      <action name="ShrinkToEdge" direction="left" />
+    </keybind>
+    <keybind key="W-C-Right">
+      <action name="ShrinkToEdge" direction="right" />
+    </keybind>
+    <keybind key="W-C-l">
+      <action name="ShrinkToEdge" direction="right" />
+    </keybind>
+    <keybind key="W-C-Up">
+      <action name="ShrinkToEdge" direction="up" />
+    </keybind>
+    <keybind key="W-C-k">
+      <action name="ShrinkToEdge" direction="up" />
+    </keybind>
+    <keybind key="W-C-Down">
+      <action name="ShrinkToEdge" direction="down" />
+    </keybind>
+    <keybind key="W-C-j">
+      <action name="ShrinkToEdge" direction="down" />
+    </keybind>
+
+    <!-- ── Workspace Navigation (Super + 1-4) ── -->
+    <keybind key="W-1">
+      <action name="GoToDesktop" to="1" />
+    </keybind>
+    <keybind key="W-2">
+      <action name="GoToDesktop" to="2" />
+    </keybind>
+    <keybind key="W-3">
+      <action name="GoToDesktop" to="3" />
+    </keybind>
+    <keybind key="W-4">
+      <action name="GoToDesktop" to="4" />
+    </keybind>
+
+    <!-- ── Move Window to Workspace (Super + Shift + 1-4) ── -->
+    <keybind key="W-S-1">
+      <action name="SendToDesktop" to="1" follow="yes" />
+    </keybind>
+    <keybind key="W-S-2">
+      <action name="SendToDesktop" to="2" follow="yes" />
+    </keybind>
+    <keybind key="W-S-3">
+      <action name="SendToDesktop" to="3" follow="yes" />
+    </keybind>
+    <keybind key="W-S-4">
+      <action name="SendToDesktop" to="4" follow="yes" />
+    </keybind>
+
+    <!-- ── Desktop & Menu Shortcuts ── -->
+    <keybind key="Menu">
+      <action name="ShowMenu" menu="root-menu" />
+    </keybind>
+    <keybind key="W-Escape">
+      <action name="ShowMenu" menu="root-menu" />
+    </keybind>
+    <keybind key="A-space">
+      <action name="ShowMenu" menu="client-menu" atCursor="no" />
+    </keybind>
+
+    <!-- Reload / Reconfigure Labwc -->
+    <keybind key="W-S-r">
+      <action name="Reconfigure" />
+    </keybind>
+  </keyboard>
+
+  <!-- ============================================== -->
+  <!-- Mouse Bindings (Tiling Drag & Contexts)        -->
+  <!-- ============================================== -->
+  <mouse>
+    <default />
+
+    <!-- Window Interactive Move & Resize via Super + Click Drag -->
+    <context name="Frame">
+      <mousebind button="W-Left" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="W-Left" action="Drag">
+        <action name="Move" />
+      </mousebind>
+      <mousebind button="W-Right" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="W-Right" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+
+    <!-- Desktop Context Menu (Right and Left Click on background) -->
+    <context name="Root">
+      <mousebind button="Left" action="Press">
+        <action name="ShowMenu" menu="root-menu" />
+      </mousebind>
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="root-menu" />
+      </mousebind>
+      <mousebind button="Middle" action="Press">
+        <action name="ShowMenu" menu="client-list-combined-menu" />
+      </mousebind>
+    </context>
+
+    <!-- Titlebar Window Menu -->
+    <context name="Title">
+      <mousebind button="Right" action="Click">
+        <action name="ShowMenu" menu="client-menu" />
+      </mousebind>
+      <mousebind button="Left" action="DoubleClick">
+        <action name="ToggleMaximize" />
+      </mousebind>
+    </context>
+  </mouse>
+
+</labwc_config>

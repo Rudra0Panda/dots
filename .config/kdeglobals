@@ -1,0 +1,212 @@
+[ColorEffects:Disabled]
+ChangeSelectionColor=
+Color=56,56,56
+ColorAmount=0
+ColorEffect=0
+ContrastAmount=0.4
+ContrastEffect=1
+Enable=
+IntensityAmount=0.1
+IntensityEffect=2
+changeselectioncolor=
+color=56,56,56
+coloramount=0
+coloreffect=0
+contrastamount=0.4
+contrasteffect=1
+enable=
+intensityamount=0.1
+intensityeffect=2
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=112,111,110
+ColorAmount=0.025
+ColorEffect=2
+ContrastAmount=0.1
+ContrastEffect=2
+Enable=false
+IntensityAmount=0
+IntensityEffect=0
+changeselectioncolor=true
+color=112,111,110
+coloramount=0.025
+coloreffect=2
+contrastamount=0.1
+contrasteffect=2
+enable=false
+intensityamount=0
+intensityeffect=0
+
+[Colors:Button]
+BackgroundAlternate=24,24,26
+BackgroundNormal=30,30,32
+DecorationFocus=80,80,82
+DecorationHover=110,110,112
+ForegroundActive=255,255,255
+ForegroundInactive=140,140,140
+ForegroundLink=138,180,248
+ForegroundNegative=234,105,98
+ForegroundNeutral=216,166,87
+ForegroundNormal=245,245,245
+ForegroundPositive=169,182,101
+ForegroundVisited=197,138,249
+
+[Colors:Complementary]
+BackgroundAlternate=24,24,26
+BackgroundNormal=30,30,32
+DecorationFocus=80,80,82
+DecorationHover=80,80,82
+ForegroundActive=255,255,255
+ForegroundInactive=140,140,140
+ForegroundLink=138,180,248
+ForegroundNegative=234,105,98
+ForegroundNeutral=216,166,87
+ForegroundNormal=245,245,245
+ForegroundPositive=169,182,101
+ForegroundVisited=197,138,249
+
+[Colors:Header]
+BackgroundAlternate=24,24,26
+BackgroundNormal=18,18,18
+DecorationFocus=80,80,82
+DecorationHover=110,110,112
+ForegroundActive=255,255,255
+ForegroundInactive=140,140,140
+ForegroundLink=138,180,248
+ForegroundNegative=234,105,98
+ForegroundNeutral=216,166,87
+ForegroundNormal=245,245,245
+ForegroundPositive=169,182,101
+ForegroundVisited=197,138,249
+
+[Colors:Header][Inactive]
+BackgroundAlternate=24,24,26
+BackgroundNormal=30,30,32
+DecorationFocus=80,80,82
+DecorationHover=110,110,112
+ForegroundActive=255,255,255
+ForegroundInactive=140,140,140
+ForegroundLink=138,180,248
+ForegroundNegative=234,105,98
+ForegroundNeutral=216,166,87
+ForegroundNormal=245,245,245
+ForegroundPositive=169,182,101
+ForegroundVisited=197,138,249
+
+[Colors:Selection]
+BackgroundAlternate=55,55,57
+BackgroundNormal=70,70,72
+DecorationFocus=80,80,82
+DecorationHover=110,110,112
+ForegroundActive=255,255,255
+ForegroundInactive=220,220,220
+ForegroundLink=138,180,248
+ForegroundNegative=234,105,98
+ForegroundNeutral=216,166,87
+ForegroundNormal=255,255,255
+ForegroundPositive=169,182,101
+ForegroundVisited=197,138,249
+
+[Colors:Tooltip]
+BackgroundAlternate=24,24,26
+BackgroundNormal=30,30,32
+DecorationFocus=80,80,82
+DecorationHover=110,110,112
+ForegroundActive=255,255,255
+ForegroundInactive=140,140,140
+ForegroundLink=138,180,248
+ForegroundNegative=234,105,98
+ForegroundNeutral=216,166,87
+ForegroundNormal=245,245,245
+ForegroundPositive=169,182,101
+ForegroundVisited=197,138,249
+
+[Colors:View]
+BackgroundAlternate=24,24,26
+BackgroundNormal=30,30,32
+DecorationFocus=80,80,82
+DecorationHover=110,110,112
+ForegroundActive=255,255,255
+ForegroundInactive=140,140,140
+ForegroundLink=138,180,248
+ForegroundNegative=234,105,98
+ForegroundNeutral=216,166,87
+ForegroundNormal=245,245,245
+ForegroundPositive=169,182,101
+ForegroundVisited=197,138,249
+
+[Colors:Window]
+BackgroundAlternate=24,24,26
+BackgroundNormal=30,30,32
+DecorationFocus=80,80,82
+DecorationHover=110,110,112
+ForegroundActive=255,255,255
+ForegroundInactive=140,140,140
+ForegroundLink=138,180,248
+ForegroundNegative=234,105,98
+ForegroundNeutral=216,166,87
+ForegroundNormal=245,245,245
+ForegroundPositive=169,182,101
+ForegroundVisited=197,138,249
+
+[General]
+ColorScheme=Monochrome
+ColorSchemeHash=9b6e67232f2e75e914fd755cb5ca87b883a24821
+browserapplication=vivaldi-stable.desktop
+colorscheme=Monochrome
+colorschemehash=a4cb1e54f08aaec9221c0623304841e0e7150d3e
+name=Monochrome
+shadesortcolumn=true
+
+[KDE]
+contrast=4
+frameContrast=0.2
+framecontrast=0.2
+lookandfeelpackage=org.kde.breezedark.desktop
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=158
+View Style=DetailTree
+allow expansion=false
+automatically select filename extension=true
+breadcrumb navigation=true
+decoration position=2
+show full path=false
+show hidden files=false
+show inline previews=true
+show preview=false
+show speedbar=true
+sort by=Name
+sort directories first=true
+sort hidden files last=false
+sort reversed=false
+speedbar width=140
+view style=DetailTree
+
+[WM]
+activeBackground=30,30,32
+activeBlend=255,255,255
+activeForeground=255,255,255
+activebackground=30,30,32
+activeblend=255,255,255
+activeforeground=255,255,255
+inactiveBackground=30,30,32
+inactiveBlend=154,169,200
+inactiveForeground=160,160,162
+inactivebackground=30,30,32
+inactiveblend=154,169,200
+inactiveforeground=160,160,162

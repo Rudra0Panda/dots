@@ -1,0 +1,25 @@
+#!/bin/sh
+# ========================================================
+# Labwc Session Autostart
+# Executed automatically by labwc upon login
+# ========================================================
+
+export PATH="${HOME}/.local/bin:${PATH}"
+
+# Sync Environment to D-Bus and Systemd
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME >/dev/null 2>&1
+systemctl --user set-environment QT_QPA_PLATFORMTHEME=qt6ct >/dev/null 2>&1
+systemctl --user unset-environment QT_STYLE_OVERRIDE >/dev/null 2>&1
+
+# 1. Set Wallpaper (Monochrome)
+swaybg -i ~/.config/labwc/wallpaper.jpg -m fill >/dev/null 2>&1 &
+
+# 2. Launch Eww Monochrome Panel
+(sleep 0.8 && ~/.config/eww/scripts/launch-bar.sh) >/dev/null 2>&1 &
+
+# 3. Notification Daemon (SwayNC)
+swaync >/dev/null 2>&1 &
+
+# 4. Launch Hardware & Background Services
+setsid ~/.config/labwc/scripts/autostart.sh >/dev/null 2>&1 &
+
