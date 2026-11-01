@@ -53,12 +53,18 @@ dotfiles/
 
 ## 🚀 Installation
 
-### 1. Install Essential Packages & Dependencies
-To install all required packages (Labwc, Qt/KDE integration, Yay, Code, Xournal++, OpenTabletDriver, fonts, utilities):
+### 1. Install Essential & Development Packages
+To install required packages (Labwc, Qt/KDE integration, Yay, Code, CLion, KiCad, ST-Link, OpenOCD, PlatformIO, Okular, LibreOffice, Gwenview, VLC, Xournal++, OpenTabletDriver, fonts, utilities):
 
 ```bash
 chmod +x install-packages.sh
+
+# Install everything (Core Desktop + Development & Embedded tools)
 ./install-packages.sh
+
+# Or selectively install:
+./install-packages.sh --core    # Labwc + Qt environment only
+./install-packages.sh --dev     # Development, Embedded, KiCad & Media only
 ```
 
 ### 2. Link Dotfiles & Themes

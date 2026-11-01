@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Essential Packages Installer for Labwc + Qt Environment
+# Essential & Development Packages Installer for Labwc + Qt Environment
 # Optimized for Arch Linux with Qt/KDE integration (No unneeded GTK bloat)
 # ==============================================================================
 set -euo pipefail
@@ -33,7 +33,39 @@ if ! command -v pacman >/dev/null 2>&1; then
     exit 1
 fi
 
-log_info "Initializing package installation for Labwc (Qt / Wayland)..."
+MODE="all"
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --core|--core-only)
+            MODE="core"
+            shift
+            ;;
+        --dev|--dev-only)
+            MODE="dev"
+            shift
+            ;;
+        --all)
+            MODE="all"
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: ./install-packages.sh [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --all         Install Core Desktop, Development, and Productivity tools (Default)"
+            echo "  --core        Install only Labwc + Qt core desktop environment"
+            echo "  --dev         Install only Development tools (Embedded, KiCad, CLion, Media)"
+            echo "  -h, --help    Show this help message"
+            exit 0
+            ;;
+        *)
+            log_warn "Unknown option '$1'. Defaulting to full installation (--all)."
+            shift
+            ;;
+    esac
+done
+
+log_info "Initializing package installation (Mode: $MODE)..."
 
 # ------------------------------------------------------------------------------
 # 2. Bootstrap Build Essentials & AUR Helper (yay)
@@ -58,12 +90,11 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# 3. Official Repository Packages (Pacman)
+# 3. Package Definitions (Official Repositories)
 # ------------------------------------------------------------------------------
-log_info "Installing official repository packages..."
 
-# Build Tools
-BUILD_TOOLS=(
+# --- Core Desktop & Utilities ---
+CORE_BUILD_TOOLS=(
     "base-devel"
     "git"
     "cmake"
@@ -71,13 +102,11 @@ BUILD_TOOLS=(
     "clang"
 )
 
-# Requested User Tools & Productivity
-USER_APPS=(
+CORE_USER_APPS=(
     "code"             # Visual Studio Code (OSS)
     "xournalpp"        # Handwriting / PDF annotation tool (modern xournal)
 )
 
-# Qt & KDE File Management + Thumbnailers (Specifically includes ffmpegthumbs)
 QT_FILE_MANAGEMENT=(
     "dolphin"                 # Qt file manager
     "ffmpegthumbs"            # Video thumbnail generator for Dolphin/KIO
@@ -85,13 +114,11 @@ QT_FILE_MANAGEMENT=(
     "kio-extras"              # Additional KIO protocols & thumbnail support
 )
 
-# Compositor & Display Manager (Qt-based SDDM instead of GTK gdm/greetd)
 COMPOSITOR_AND_DM=(
     "labwc"                   # Wayland stacking compositor
     "sddm"                    # Qt-based display manager
 )
 
-# Qt / Wayland Styling & Integration
 QT_WAYLAND_THEMING=(
     "qt5-wayland"
     "qt6-wayland"
@@ -107,7 +134,6 @@ QT_WAYLAND_THEMING=(
     "kwalletmanager"          # Qt wallet manager
 )
 
-# Desktop Shell Tools & Script Dependencies
 SHELL_UTILS=(
     "swaybg"                  # Wallpaper utility
     "swaync"                  # Notification daemon
@@ -122,7 +148,6 @@ SHELL_UTILS=(
     "libnotify"               # Desktop notification sender (notify-send)
 )
 
-# Typography & Fonts
 FONTS=(
     "ttf-jetbrains-mono-nerd"
     "ttf-firacode-nerd"
@@ -133,7 +158,6 @@ FONTS=(
     "ttf-dejavu"
 )
 
-# Hardware, Audio & Network Foundations
 HARDWARE_AND_AUDIO=(
     "pipewire"
     "wireplumber"
@@ -144,38 +168,99 @@ HARDWARE_AND_AUDIO=(
     "bluez-utils"
 )
 
-ALL_PACMAN_PACKAGES=(
-    "${BUILD_TOOLS[@]}"
-    "${USER_APPS[@]}"
-    "${QT_FILE_MANAGEMENT[@]}"
-    "${COMPOSITOR_AND_DM[@]}"
-    "${QT_WAYLAND_THEMING[@]}"
-    "${SHELL_UTILS[@]}"
-    "${FONTS[@]}"
-    "${HARDWARE_AND_AUDIO[@]}"
+# --- Development & Embedded Ecosystem ---
+EMBEDDED_DEV_TOOLS=(
+    "arm-none-eabi-gcc"       # Cross-compiler for ARM Cortex-M/R bare metal
+    "arm-none-eabi-binutils"  # Linker and assembler for ARM EABI
+    "arm-none-eabi-gdb"       # GDB debugger for ARM
+    "arm-none-eabi-newlib"    # C library for bare-metal ARM systems
+    "stlink"                  # STM32 programming & debug toolset (st-flash, st-util)
+    "openocd"                 # Open On-Chip Debugger (JTAG/SWD)
+    "dfu-util"                # Device Firmware Upgrade (USB flashing)
+    "platformio-core"         # PlatformIO IoT/embedded ecosystem CLI
 )
 
-sudo pacman -S --needed --noconfirm "${ALL_PACMAN_PACKAGES[@]}"
-log_success "All official packages installed."
-
-# ------------------------------------------------------------------------------
-# 4. AUR Packages (yay)
-# ------------------------------------------------------------------------------
-log_info "Installing AUR packages..."
-
-AUR_PACKAGES=(
-    "code-marketplace"        # Enable official VS Code Marketplace in code
-    "opentabletdriver"        # Open-source tablet driver
-    "waypaper"                # GUI wallpaper manager
-    "labwc-menu-generator-git"# Dynamic desktop menu generator for labwc
-    "labwc-tweaks-git"        # GUI configuration tool for labwc
+EDA_AND_HARDWARE=(
+    "kicad"                   # Schematic and PCB design suite
+    "kicad-library"           # Symbols, footprints, and template libraries
+    "kicad-library-3d"        # 3D models for components
 )
 
-yay -S --needed --noconfirm "${AUR_PACKAGES[@]}"
-log_success "All AUR packages installed."
+PRODUCTIVITY_AND_MEDIA=(
+    "okular"                  # KDE / Qt document and PDF viewer
+    "libreoffice-fresh"       # LibreOffice productivity suite
+    "gwenview"                # KDE / Qt image viewer
+    "vlc"                     # Multimedia player
+)
 
 # ------------------------------------------------------------------------------
-# 5. Service Configuration
+# 4. Install Selected Official Packages (Pacman)
+# ------------------------------------------------------------------------------
+PACMAN_INSTALL_LIST=()
+
+if [[ "$MODE" == "core" || "$MODE" == "all" ]]; then
+    PACMAN_INSTALL_LIST+=(
+        "${CORE_BUILD_TOOLS[@]}"
+        "${CORE_USER_APPS[@]}"
+        "${QT_FILE_MANAGEMENT[@]}"
+        "${COMPOSITOR_AND_DM[@]}"
+        "${QT_WAYLAND_THEMING[@]}"
+        "${SHELL_UTILS[@]}"
+        "${FONTS[@]}"
+        "${HARDWARE_AND_AUDIO[@]}"
+    )
+fi
+
+if [[ "$MODE" == "dev" || "$MODE" == "all" ]]; then
+    PACMAN_INSTALL_LIST+=(
+        "${EMBEDDED_DEV_TOOLS[@]}"
+        "${EDA_AND_HARDWARE[@]}"
+        "${PRODUCTIVITY_AND_MEDIA[@]}"
+    )
+fi
+
+log_info "Installing official packages via pacman..."
+sudo pacman -S --needed --noconfirm "${PACMAN_INSTALL_LIST[@]}"
+log_success "Official repository packages installed."
+
+# ------------------------------------------------------------------------------
+# 5. AUR Packages & JetBrains Integration
+# ------------------------------------------------------------------------------
+log_info "Installing AUR packages and configuring developer tools..."
+
+AUR_INSTALL_LIST=()
+
+if [[ "$MODE" == "core" || "$MODE" == "all" ]]; then
+    AUR_INSTALL_LIST+=(
+        "code-marketplace"        # Enable official VS Code Marketplace in code
+        "opentabletdriver"        # Open-source tablet driver
+        "waypaper"                # GUI wallpaper manager
+        "labwc-menu-generator-git"# Dynamic desktop menu generator for labwc
+        "labwc-tweaks-git"        # GUI configuration tool for labwc
+    )
+fi
+
+# CLion setup (Toolbox check with AUR fallback)
+TOOLBOX_CLION="$HOME/.local/share/JetBrains/Toolbox/apps/clion/bin/clion"
+if [ -f "$TOOLBOX_CLION" ]; then
+    log_step "Found JetBrains Toolbox CLion at $TOOLBOX_CLION"
+    mkdir -p "$HOME/.local/bin"
+    ln -sf "$TOOLBOX_CLION" "$HOME/.local/bin/clion"
+    log_success "Linked CLion binary to ~/.local/bin/clion"
+elif command -v clion >/dev/null 2>&1; then
+    log_success "CLion is already installed: $(command -v clion)"
+elif [[ "$MODE" == "dev" || "$MODE" == "all" ]]; then
+    log_step "Adding CLion to AUR installation list..."
+    AUR_INSTALL_LIST+=("clion" "clion-jre")
+fi
+
+if [ ${#AUR_INSTALL_LIST[@]} -gt 0 ]; then
+    yay -S --needed --noconfirm "${AUR_INSTALL_LIST[@]}"
+    log_success "AUR packages installed."
+fi
+
+# ------------------------------------------------------------------------------
+# 6. Service Configuration
 # ------------------------------------------------------------------------------
 log_info "Configuring essential services..."
 
@@ -200,7 +285,7 @@ if ! systemctl is-enabled sddm.service >/dev/null 2>&1; then
 fi
 
 # ------------------------------------------------------------------------------
-# 6. Eww (ElKowar's Wacky Widgets) Status Check
+# 7. Eww (ElKowar's Wacky Widgets) Status Check
 # ------------------------------------------------------------------------------
 log_info "Checking Eww status bar..."
 if command -v eww >/dev/null 2>&1; then
@@ -215,9 +300,9 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# 7. Completed
+# 8. Completed
 # ------------------------------------------------------------------------------
 echo ""
-log_info "Package installation complete!"
+log_info "Installation process complete!"
 log_step "Note: Redundant GTK suites (gdm, gtklock, greetd, nwg-look, gnome-control-center) were excluded."
 log_step "Next step: Run './install.sh' to link and configure your dotfiles."
