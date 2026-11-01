@@ -13,6 +13,7 @@ XDG_SESSION_DESKTOP=labwc
 # Wayland Toolkit Backend integration
 QT_QPA_PLATFORM=wayland;xcb
 QT_QPA_PLATFORMTHEME=qt6ct
+QT_PLUGIN_PATH=/home/rudra/.local/lib/qt6/plugins:/home/rudra/.local/lib/qt/plugins:/usr/lib/qt6/plugins:/usr/lib/qt/plugins
 GDK_BACKEND=wayland,x11
 MOZ_ENABLE_WAYLAND=1
 ELECTRON_OZONE_PLATFORM_HINT=wayland
