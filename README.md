@@ -69,19 +69,20 @@ chmod +x install-packages.sh
 ./install-packages.sh --dev     # Development, Embedded, KiCad & Media only
 ```
 
-### 2. Link Dotfiles & Themes
-To link configurations to your `$HOME` directory:
+### 2. Install Dotfiles & Themes (Direct Portable Copy)
+To install the configurations directly into your `$HOME` directory:
 
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
-*(Or run `./install.sh --packages` to run both in sequence)*
+*(Or run `./install.sh --packages` to run both package installation and dotfile setup in sequence)*
 
 The install script automatically:
 1. Backs up any existing configuration files to a timestamped backup directory (`~/.dotfiles_backup_<timestamp>`).
-2. Creates symlinks from `~/.config/` and `~/.local/` to the dotfiles directory.
-3. Reloads active daemons (`labwc`, `swaync`, `eww`, and `kvantum`).
+2. Copies all configuration files and assets directly into `~/.config/`, `~/.local/bin/`, and `~/.local/share/` (avoiding fragile symlinks so it can be replicated onto any system).
+3. Adapts internal paths dynamically to the target system's `$HOME`.
+4. Reloads active daemons (`labwc`, `swaync`, `eww`, and `kvantum`).
 
 ---
 

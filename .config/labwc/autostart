@@ -7,7 +7,7 @@
 export PATH="${HOME}/.local/bin:${PATH}"
 
 # Sync Environment to D-Bus and Systemd
-export QT_PLUGIN_PATH="/home/rudra/.local/lib/qt6/plugins:/home/rudra/.local/lib/qt/plugins:/usr/lib/qt6/plugins:/usr/lib/qt/plugins"
+export QT_PLUGIN_PATH="${HOME}/.local/lib/qt6/plugins:${HOME}/.local/lib/qt/plugins:/usr/lib/qt6/plugins:/usr/lib/qt/plugins"
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME QT_PLUGIN_PATH >/dev/null 2>&1
 systemctl --user set-environment QT_QPA_PLATFORMTHEME=qt6ct QT_PLUGIN_PATH="${QT_PLUGIN_PATH}" >/dev/null 2>&1
 systemctl --user unset-environment QT_STYLE_OVERRIDE >/dev/null 2>&1

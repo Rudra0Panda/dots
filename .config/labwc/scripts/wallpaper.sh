@@ -4,7 +4,7 @@
 # Usage: wallpaper.sh [path/to/custom/image]
 # ========================================================
 
-WALLPAPER="/home/rudra/.config/labwc/wallpaper.jpg"
+WALLPAPER="${HOME}/.config/labwc/wallpaper.jpg"
 
 if [ -n "$1" ] && [ -f "$1" ]; then
     WALLPAPER="$1"
