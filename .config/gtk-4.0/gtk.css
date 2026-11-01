@@ -1,1 +1,24 @@
-/usr/share/themes/Breeze/gtk-4.0/gtk.css
+@import url('/usr/share/themes/Breeze-Dark/gtk-4.0/gtk.css');
+@import url('window_decorations.css');
+
+/* Dark Titlebars / Headerbars */
+headerbar,
+.titlebar,
+headerbar:backdrop,
+.titlebar:backdrop {
+    background-color: #121212;
+    background-image: none;
+    border-bottom: 1px solid #282828;
+    color: #ffffff;
+}
+
+headerbar .title,
+.titlebar .title {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+headerbar .subtitle,
+.titlebar .subtitle {
+    color: #888888;
+}

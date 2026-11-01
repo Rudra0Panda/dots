@@ -167,21 +167,156 @@ blankwindow {
 }
 
 /* ── Actions & Buttons in Notifications ── */
-.notification-action {
-  background: #1c1c1c;
-  border: 1px solid #333333;
+.notification-alt-actions {
+  background: transparent;
+  padding: 4px 0 0 0;
+  margin-top: 4px;
+}
+
+.notification-alt-actions flowboxchild {
+  padding: 2px 0;
+  margin: 0;
+  background: transparent;
+}
+
+.control-center .notification .notification-alt-actions button,
+.control-center-list .notification .notification-alt-actions button,
+.notification-row .notification-background .notification .notification-alt-actions button,
+.notification-row .notification-background .notification .notification-action,
+.notification-alt-actions button,
+.notification-alt-actions .notification-action,
+button.notification-action,
+.notification-action,
+.notification-action > button,
+.notification-action button {
+  background-color: #202022;
+  background-image: none;
+  border: 1px solid #38383a;
   border-radius: 6px;
   color: #ffffff;
   font-size: 11px;
-  font-weight: bold;
-  padding: 4px 10px;
-  margin: 4px;
+  font-weight: 700;
+  padding: 6px 14px;
+  min-height: 28px;
+  box-shadow: none;
+  text-shadow: none;
   transition: var(--hover-transition);
 }
 
-.notification-action:hover {
-  background: #2a2a2a;
-  border-color: #666666;
+.control-center .notification .notification-alt-actions button:hover,
+.control-center-list .notification .notification-alt-actions button:hover,
+.notification-row .notification-background .notification .notification-alt-actions button:hover,
+.notification-row .notification-background .notification .notification-action:hover,
+.notification-alt-actions button:hover,
+.notification-alt-actions .notification-action:hover,
+button.notification-action:hover,
+.notification-action:hover,
+.notification-action > button:hover,
+.notification-action button:hover {
+  background-color: #303034;
+  background-image: none;
+  border-color: #55555a;
+  color: #ffffff;
+}
+
+.control-center .notification .notification-alt-actions button:active,
+.control-center-list .notification .notification-alt-actions button:active,
+.notification-row .notification-background .notification .notification-alt-actions button:active,
+.notification-row .notification-background .notification .notification-action:active,
+.notification-alt-actions button:active,
+.notification-alt-actions .notification-action:active,
+button.notification-action:active,
+.notification-action:active,
+.notification-action > button:active,
+.notification-action button:active {
+  background-color: #3e3e42;
+  background-image: none;
+  border-color: #707075;
+  color: #ffffff;
+}
+
+.notification-alt-actions button label,
+.notification-alt-actions .notification-action label,
+button.notification-action label,
+.notification-action label {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ── Inline Reply Entry & Button ── */
+.notification-row .notification-background .notification .inline-reply,
+.inline-reply {
+  margin-top: 6px;
+  padding: 2px 0;
+}
+
+.notification-row .notification-background .notification .inline-reply .inline-reply-entry,
+.inline-reply .inline-reply-entry,
+.inline-reply-entry {
+  background-color: #141416;
+  background-image: none;
+  border: 1px solid #38383a;
+  border-radius: 6px;
+  color: #ffffff;
+  caret-color: #ffffff;
+  font-size: 12px;
+  padding: 6px 10px;
+  min-height: 28px;
+  box-shadow: none;
+  transition: var(--hover-transition);
+}
+
+.notification-row .notification-background .notification .inline-reply .inline-reply-entry:focus,
+.inline-reply .inline-reply-entry:focus,
+.inline-reply-entry:focus {
+  border-color: #66666a;
+  background-color: #1a1a1c;
+}
+
+.inline-reply .inline-reply-entry placeholder,
+.inline-reply-entry placeholder {
+  color: #777777;
+}
+
+.notification-row .notification-background .notification .inline-reply .inline-reply-button,
+.inline-reply .inline-reply-button,
+.inline-reply-button {
+  background-color: #242426;
+  background-image: none;
+  border: 1px solid #38383a;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  margin-left: 6px;
+  min-height: 28px;
+  box-shadow: none;
+  transition: var(--hover-transition);
+}
+
+.notification-row .notification-background .notification .inline-reply .inline-reply-button:hover,
+.inline-reply .inline-reply-button:hover,
+.inline-reply-button:hover {
+  background-color: #343438;
+  border-color: #55555a;
+  color: #ffffff;
+}
+
+.notification-row .notification-background .notification .inline-reply .inline-reply-button:active,
+.inline-reply .inline-reply-button:active,
+.inline-reply-button:active {
+  background-color: #404046;
+  border-color: #707075;
+  color: #ffffff;
+}
+
+.notification-row .notification-background .notification .inline-reply .inline-reply-button:disabled,
+.inline-reply .inline-reply-button:disabled,
+.inline-reply-button:disabled {
+  background-color: #18181a;
+  color: #555555;
+  border-color: #282828;
 }
 
 .notification-default-action {
